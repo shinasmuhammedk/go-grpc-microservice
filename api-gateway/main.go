@@ -3,6 +3,7 @@ package main
 import (
 	"api-gateway/handler"
 	pb "api-gateway/proto"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
@@ -21,5 +22,10 @@ func main() {
     r := gin.Default()
     
     //routes
+    handler.RegisterUserRoutes(r, userClient)
+    handler.RegisterOrderRoutes(r, orderClient)
     
+    
+    log.Println("Gateway running on : 8080")
+    r.Run(":8080")
 }

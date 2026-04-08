@@ -254,9 +254,10 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"%\n" +
 	"\rLoginResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2w\n" +
-	"\vUserService\x126\n" +
-	"\aGetUser\x12\x17.user.CreateUserRequest\x1a\x12.user.UserResponse\x120\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token2z\n" +
+	"\vUserService\x129\n" +
+	"\n" +
+	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x12.user.UserResponse\x120\n" +
 	"\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponseB\tZ\a./protob\x06proto3"
 
 var (
@@ -279,9 +280,9 @@ var file_proto_user_proto_goTypes = []any{
 	(*LoginResponse)(nil),     // 3: user.LoginResponse
 }
 var file_proto_user_proto_depIdxs = []int32{
-	0, // 0: user.UserService.GetUser:input_type -> user.CreateUserRequest
+	0, // 0: user.UserService.CreateUser:input_type -> user.CreateUserRequest
 	2, // 1: user.UserService.Login:input_type -> user.LoginRequest
-	1, // 2: user.UserService.GetUser:output_type -> user.UserResponse
+	1, // 2: user.UserService.CreateUser:output_type -> user.UserResponse
 	3, // 3: user.UserService.Login:output_type -> user.LoginResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type

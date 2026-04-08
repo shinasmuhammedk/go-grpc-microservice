@@ -41,7 +41,7 @@ func (s *UserService) Login(ctx context.Context, req *pb.LoginRequest) (*pb.Logi
 	var password string
 
 	err := s.DB.QueryRow(
-		"SELECT id,password FROM users WHERE email=$1",
+		"SELECT id,password FROM grpcUsers WHERE email=$1",
 		req.Email,
 	).Scan(&id, &password)
 	if err != nil {

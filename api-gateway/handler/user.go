@@ -1,8 +1,8 @@
 package handler
 
 import (
+
 	pb "api-gateway/proto"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +18,7 @@ func RegisterUserRoutes(r *gin.Engine, client pb.UserServiceClient) {
 	r.POST("/login", h.Login)
 }
 
+// Register
 func (h *UserHandler) CreateUser(c *gin.Context) {
 	var req struct {
 		Name     string `json:"name"`
@@ -25,24 +26,23 @@ func (h *UserHandler) CreateUser(c *gin.Context) {
 		Password string `json:"password"`
 	}
 
-	c.BindJSON(req)
+	c.BindJSON(&req)
 
-	res, err := h.client.CreateUser(c, &pb.CreateOrderRequest{
+	res, err := h.client.CreateUser(c, &pb.CreateUserRequest{
 		Name:     req.Name,
 		Email:    req.Email,
 		Password: req.Password,
 	})
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
+		c.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, res)
+
+	c.JSON(200, res)
 }
 
-// login
+// Login
 func (h *UserHandler) Login(c *gin.Context) {
 	var req struct {
 		Email    string `json:"email"`
@@ -57,13 +57,9 @@ func (h *UserHandler) Login(c *gin.Context) {
 	})
 
 	if err != nil {
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
+		c.JSON(401, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"token": res.Token,
-	})
+	c.JSON(200, gin.H{"token": res.Token})
 }
